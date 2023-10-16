@@ -11,6 +11,7 @@ import com.singularsys.jep.EvaluationException
 import com.singularsys.jep.Jep
 import com.singularsys.jep.ParseException
 import kotlin.math.abs
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private var rePick: Button? = null
@@ -48,17 +49,19 @@ class MainActivity : AppCompatActivity() {
             findViewById<ImageButton>(R.id.card3),
             findViewById<ImageButton>(R.id.card4))
 
-
+        imageCount = arrayOf(0, 0, 0, 0)
+        initCardImage()
+        pickCard()
         cards[0].setOnClickListener(View.OnClickListener { clickCard(0) })
         cards[1].setOnClickListener(View.OnClickListener { clickCard(1) })
         cards[2].setOnClickListener(View.OnClickListener { clickCard(2) })
         cards[3].setOnClickListener(View.OnClickListener { clickCard(3) })
 
-        imageCount = arrayOf(0, 0, 0, 0)
-        initCardImage()
-        pickCard()
 
 
+
+
+        rePick!!.setOnClickListener { pickCard() }
         left!!.setOnClickListener { expression.append("(") }
         right!!.setOnClickListener { expression.append(")") }
         plus!!.setOnClickListener { expression.append("+") }
@@ -82,6 +85,7 @@ class MainActivity : AppCompatActivity() {
                 setClear()
             }
         }
+        checkInput!!.isEnabled = false
 
     }
 
@@ -95,14 +99,18 @@ class MainActivity : AppCompatActivity() {
     private fun pickCard(){
         data = arrayOf(0, 0, 0, 0)
         card = arrayOf(0, 0, 0, 0)
-        card[0] = 4
-        card[1] = 5
-        card[2] = 9
-        card[3] = 10
-        data[0] = 4
-        data[1] = 5
-        data[2] = 9
-        data[3] = 10
+        for (i in 0..3){
+            var random = Random.nextInt(1,53)
+            card[i] = random
+            if (random % 13 == 0){
+                data[i] = 13
+            }
+
+            else{
+                data[i] = random % 13
+            }
+
+        }
         setClear()
 
     }
@@ -112,15 +120,17 @@ class MainActivity : AppCompatActivity() {
         expression.text = ""
         for (i in 0..3) {
             imageCount[i] = 0
-            resID = resources.getIdentifier("card" + card[i], "drawable", "hk.hkucs.card24")
+            resID = resources.getIdentifier("card" + card[i], "drawable", "hk.hku.cs.card24")
             cards[i].setImageResource(resID)
             cards[i].isClickable = true
         }
+        checkInput!!.isEnabled = false
     }
     private fun clickCard(i: Int) {
         val resId: Int
         val num: String
         val value: Int
+
         if (imageCount[i] == 0) {
             resId = resources.getIdentifier("back_0", "drawable", "hk.hku.cs.card24")
             cards[i].setImageResource(resId)
@@ -130,7 +140,24 @@ class MainActivity : AppCompatActivity() {
             expression.append(num)
             imageCount[i]++
         }
+
+        checkCount()
+
     }
+
+    private fun checkCount() {
+        var count = 0
+        for (i in 0..3){
+            if (imageCount[i] > 0){
+                count++
+            }
+        }
+
+        if (count == 4){
+            checkInput!!.isEnabled = true
+        }
+    }
+
     private fun checkInput(input: String): Boolean {
         val jep = Jep()
         val res: Any = try {
@@ -152,6 +179,7 @@ class MainActivity : AppCompatActivity() {
             return false
         }
         val ca = res as Double
+        System.out.println(ca)
         return abs(ca - 24) < 1e-6
     }
 

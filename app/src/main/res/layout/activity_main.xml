@@ -120,13 +120,14 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:layout_marginTop="35dp"
                     android:layout_weight="1.05" />
+
                 <Button
+                    android:id="@+id/clear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="clear"
-                    android:id="@+id/clear"
                     android:layout_marginTop="35dp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_marginRight="10dp"
+                    android:text="clear" />
 
             </LinearLayout>
 
@@ -140,58 +141,53 @@
                 android:layout_marginTop="10dp">
 
                 <Button
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="("
                     android:id="@+id/left"
-                    android:longClickable="true" />
+                    android:layout_width="55dp"
+                    android:layout_height="40dp"
+                    android:longClickable="true"
+                    android:text="(" />
 
                 <Button
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text=")"
                     android:id="@+id/right"
+                    android:layout_width="55dp"
+                    android:layout_height="40dp"
                     android:longClickable="true"
-                    android:layout_marginLeft="10dp" />
+                    android:text=")" />
 
                 <Button
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="+"
                     android:id="@+id/plus"
-                    android:longClickable="true"
-                    android:layout_marginLeft="10dp" />
-                <Button
-                    android:layout_width="40dp"
+                    android:layout_width="55dp"
                     android:layout_height="40dp"
-                    android:text="-"
+                    android:longClickable="true"
+                    android:text="+" />
+
+                <Button
                     android:id="@+id/minus"
+                    android:layout_width="55dp"
+                    android:layout_height="40dp"
                     android:longClickable="true"
-                    android:layout_marginLeft="10dp" />
+                    android:text="-" />
 
                 <Button
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="*"
                     android:id="@+id/multiply"
+                    android:layout_width="55dp"
+                    android:layout_height="40dp"
                     android:longClickable="true"
-                    android:layout_marginLeft="10dp" />
+                    android:text="*" />
 
                 <Button
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="/"
                     android:id="@+id/divide"
+                    android:layout_width="55dp"
+                    android:layout_height="40dp"
                     android:longClickable="true"
-                    android:layout_marginLeft="10dp" />
+                    android:text="/" />
 
                 <Button
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="="
                     android:id="@+id/checkinput"
+                    android:layout_width="55dp"
+                    android:layout_height="40dp"
                     android:longClickable="true"
-                    android:layout_marginLeft="10dp" />
+                    android:text="=" />
             </LinearLayout>
 
         </LinearLayout>
